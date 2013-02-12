@@ -37,7 +37,9 @@
 	<cffunction name="$addDeleteClause" returntype="array" access="public" output="false" mixin="model">
 		<cfargument name="sql" type="array" required="true">
 		<cfargument name="softDelete" type="boolean" required="true">
-		<cfargument name="variables.wheels.class.logUserActions.deleteProperty" default="deletedBy">
+		<cfif !IsDefined("variables.wheels.class.logUserActions.deleteProperty")>
+			<cfset variables.wheels.class.logUserActions.deleteProperty = 'deletedBy'>
+		</cfif>
 		<cfset var stuParam = {}>
 		<cfset arguments.sql = core.$addDeleteClause(arguments.sql, arguments.softDelete)>
 		<cfif variables.wheels.class.softDeletion and arguments.softDelete and StructKeyExists(variables.wheels.class.properties, variables.wheels.class.logUserActions.deleteProperty) and IsDefined(variables.wheels.class.logUserActions.userIdLocation)>
