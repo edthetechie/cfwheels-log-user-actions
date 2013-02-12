@@ -40,6 +40,9 @@
 		<cfif !IsDefined("variables.wheels.class.logUserActions.deleteProperty")>
 			<cfset variables.wheels.class.logUserActions.deleteProperty = 'deletedBy'>
 		</cfif>
+		<cfif !IsDefined("variables.wheels.class.logUserActions.userIdLocation")>
+			<cfset variables.wheels.class.logUserActions.userIdLocation = '#session.user.id#'>
+		</cfif>
 		<cfset var stuParam = {}>
 		<cfset arguments.sql = core.$addDeleteClause(arguments.sql, arguments.softDelete)>
 		<cfif variables.wheels.class.softDeletion and arguments.softDelete and StructKeyExists(variables.wheels.class.properties, variables.wheels.class.logUserActions.deleteProperty) and IsDefined(variables.wheels.class.logUserActions.userIdLocation)>
